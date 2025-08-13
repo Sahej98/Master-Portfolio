@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      };
+    </script>
+
+    <style>
+      /* ===== General Style Fixes & Scrollbar ===== */
+      html {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+    </style>
+
+    <!-- Import Map for React -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.1.1/",
+          "react": "https://esm.sh/react@^19.1.1",
+          "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+          "@google/genai": "https://esm.sh/@google/genai@^1.13.0",
+          "lucide-react": "https://esm.sh/lucide-react@^0.417.0",
+          "framer-motion": "https://esm.sh/framer-motion@^11.3.19"
+        }
+      }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+  <body
+    class="text-gray-800 font-sans dark:text-slate-300 transition-colors duration-300"
+  >
+    <div id="root"></div>
+
+    <script>
+      // Polyfill 'process' for browser environments to prevent crashes
+      // when accessing process.env.API_KEY in services like the Gemini SDK.
+      if (typeof window.process === 'undefined') {
+        window.process = { env: {} };
+      }
+    </script>
+
+    <!-- React App Entry -->
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

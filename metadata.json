@@ -1,0 +1,6 @@
+{
+  "name": "AI-Powered Developer Portfolio",
+  "description": "A sleek, modern developer portfolio website featuring an interactive AI assistant powered by the Gemini API. Showcase your skills, projects, and let an AI answer questions about your experience.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
