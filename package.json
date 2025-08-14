@@ -1,6 +1,7 @@
 {
   "name": "ai-powered-developer-portfolio",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,8 +16,8 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "~5.8.2",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.5",
     "vite": "^4.5.0"
   }
 }
