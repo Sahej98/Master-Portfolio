@@ -1,6 +1,6 @@
 {
-  "name": "AI-Powered Developer Portfolio",
-  "description": "A sleek, modern developer portfolio website featuring an interactive AI assistant powered by the Gemini API. Showcase your skills, projects, and let an AI answer questions about your experience.",
+  "name": "Modern Developer Portfolio",
+  "description": "A sleek, modern developer portfolio website to showcase your skills and projects. Features smooth animations, a theme toggle, and a clean, responsive design.",
   "requestFramePermissions": [],
   "prompt": ""
 }

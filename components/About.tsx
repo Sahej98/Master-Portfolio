@@ -1,10 +1,15 @@
-
-
-
+import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
-import { PERSONAL_INFO } from '../constants';
+import { Layers, FileCode2, BrainCircuit, Goal } from 'lucide-react';
+import { PERSONAL_INFO, CORE_PHILOSOPHY } from '../constants';
 import { SectionID } from '../types';
+
+const philosophyIcons = [
+  <Layers size={36} className='text-emerald-500 dark:text-emerald-400' />,
+  <FileCode2 size={36} className='text-emerald-500 dark:text-emerald-400' />,
+  <BrainCircuit size={36} className='text-emerald-500 dark:text-emerald-400' />,
+  <Goal size={36} className='text-emerald-500 dark:text-emerald-400' />,
+];
 
 export default function About() {
   const containerVariants: Variants = {
@@ -15,87 +20,80 @@ export default function About() {
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { type: 'tween', duration: 0.5, ease: 'easeOut'}},
+  const pillarVariants: Variants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: 'spring', stiffness: 100 },
+    },
   };
 
-  const highlightCardVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
-  }
-
   return (
-    <motion.section 
-        id={SectionID.ABOUT} 
-        className='py-20 md:py-32'
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.6 }}
-    >
-      <div className="max-w-7xl mx-auto px-4">
-          {/* Header */}
-          <motion.div 
-              className='text-center mb-16'
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8 }}
-          >
-              <h2 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight'>
-                  About Me
-              </h2>
-              <p className='text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto'>
-                  A brief look into my background and what drives me.
-              </p>
-              <div className="w-24 h-1 bg-emerald-500/50 dark:bg-emerald-400/50 mx-auto mt-6 rounded-full"></div>
+    <motion.section id={SectionID.ABOUT} className='py-16 md:py-24'>
+      <div className='max-w-7xl mx-auto px-4'>
+        {/* Header */}
+        <motion.div
+          className='text-center mb-16'
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8 }}>
+          <h2 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight'>
+            About Me
+          </h2>
+          <p className='text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-3xl mx-auto'>
+            My journey in technology is driven by a passion for building things
+            that matter. Here's a glimpse into my approach and what I value.
+          </p>
+          <div className='w-24 h-1 bg-emerald-500/50 dark:bg-emerald-400/50 mx-auto mt-6 rounded-full'></div>
+        </motion.div>
+
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center'>
+          {/* Left side: About paragraph in a card */}
+          <motion.div
+            className='bg-white/30 dark:bg-slate-800/50 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-slate-200/80 dark:border-slate-700/50'
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}>
+            <h3 className='text-2xl font-bold text-gray-800 dark:text-white mb-4'>
+              My Story
+            </h3>
+            <p className='text-gray-600 dark:text-slate-400 leading-relaxed'>
+              {PERSONAL_INFO.about}
+            </p>
           </motion.div>
 
-          <motion.div 
-            className='grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start'
+          {/* Right side: Core philosophies */}
+          <motion.div
+            className='space-y-4'
             variants={containerVariants}
-          >
-              {/* Left Column: Main Description */}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.2 }}>
+            {CORE_PHILOSOPHY.map((philosophy, index) => (
               <motion.div
-                variants={itemVariants}
-              >
-                  <p className='p-5 text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-justify'>
-                      {PERSONAL_INFO.about}
+                key={philosophy.title}
+                variants={pillarVariants}
+                className='flex items-start gap-5 p-4 rounded-xl transition-colors duration-300 hover:bg-white/40 dark:hover:bg-slate-800/70'
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 300 }}>
+                <div className='flex-shrink-0 w-16 h-16 bg-white/50 dark:bg-slate-800/60 backdrop-blur-lg rounded-xl flex items-center justify-center border border-slate-200/80 dark:border-slate-700/50'>
+                  {philosophyIcons[index]}
+                </div>
+                <div>
+                  <h4 className='font-bold text-xl text-gray-800 dark:text-white mb-1'>
+                    {philosophy.title}
+                  </h4>
+                  <p className='text-gray-600 dark:text-slate-400'>
+                    {philosophy.description}
                   </p>
+                </div>
               </motion.div>
-              
-              {/* Right Column: Highlights */}
-              <motion.div 
-                  variants={containerVariants}
-              >
-                  <motion.h3 
-                      variants={itemVariants}
-                      className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6"
-                  >
-                      What I Bring to the Table
-                  </motion.h3>
-
-                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-                    {PERSONAL_INFO.highlights.map((highlight, index) => {
-                        const [title, description] = highlight.split(': ');
-                        return (
-                          <motion.div
-                              key={index}
-                              variants={highlightCardVariants}
-                              className='flex flex-col gap-4 p-5 rounded-lg bg-white/50 dark:bg-slate-800/60 border border-emerald-500/10 dark:border-slate-700/50'
-                          >
-                              <div className="flex items-center gap-3">
-                                <CheckCircle2 className='text-emerald-500 dark:text-emerald-400 w-7 h-7 flex-shrink-0' />
-                                <h4 className='font-bold text-gray-800 dark:text-gray-200 text-lg'>{title}</h4>
-                              </div>
-                              <p className='text-gray-600 dark:text-gray-400 text-sm'>{description}</p>
-                          </motion.div>
-                        );
-                    })}
-                  </div>
-              </motion.div>
+            ))}
           </motion.div>
+        </div>
       </div>
     </motion.section>
   );

@@ -95,7 +95,7 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-30 top-0 start-0 transition-all duration-300 ${
         hasScrolled
-          ? 'bg-white/40 shadow-md dark:bg-slate-900/40 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50'
+          ? 'bg-white/70 shadow-md dark:bg-slate-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-slate-800/50'
           : 'bg-transparent'
       }`}>
       <div className='max-w-screen-xl flex items-center mx-auto p-4'>
@@ -152,16 +152,16 @@ const Navbar = () => {
             initial='hidden'
             animate='visible'
             exit='exit'>
-            <ul className='flex flex-col p-4 font-medium bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-700'>
+            <ul className='flex flex-col p-4 font-medium bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-slate-800/50'>
               {NAVIGATION_LINKS.map((link) => (
                 <motion.li key={link.name} variants={mobileLinkVariants}>
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block py-3 px-3 rounded transition-colors text-base ${
+                    className={`block py-3 px-3 rounded-lg transition-colors text-base ${
                       activeSection === link.href.substring(1)
-                        ? 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-slate-800'
-                        : 'text-gray-800 hover:bg-emerald-50 dark:text-slate-300 dark:hover:bg-slate-800'
+                        ? 'text-emerald-600 bg-emerald-500/10 dark:text-emerald-400 dark:bg-emerald-400/10'
+                        : 'text-gray-800 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'
                     }`}>
                     {link.name}
                   </a>
@@ -172,7 +172,7 @@ const Navbar = () => {
                   href={PERSONAL_INFO.resumeUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='flex items-center gap-3 text-base text-gray-800 hover:bg-emerald-50 dark:text-slate-300 dark:hover:bg-slate-800 py-3 px-3 rounded transition-colors'>
+                  className='flex items-center gap-3 text-base text-gray-800 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800 py-3 px-3 rounded-lg transition-colors'>
                   <FileText size={20} />
                   Resume
                 </a>
