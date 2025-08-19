@@ -82,7 +82,8 @@ const Skills = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-300 hover:bg-gray-200/50 dark:hover:bg-slate-800/50'
                 }`}
                 whileHover={{ x: 5 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                >
                 {activeCategory === category && (
                   <motion.div
                     className='absolute inset-0 bg-emerald-500/10 dark:bg-emerald-400/10 rounded-lg'

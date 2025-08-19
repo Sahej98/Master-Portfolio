@@ -22,9 +22,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     if (storedTheme) return storedTheme;
 
     // 2. Check system preference
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     return prefersDark ? 'dark' : 'light';
   };
 

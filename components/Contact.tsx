@@ -153,7 +153,8 @@ const Contact = () => {
       className='py-16 md:py-24'
       initial='hidden'
       whileInView='visible'
-      viewport={{ once: true, amount: 0.1 }}>
+      viewport={{ once: true, amount: 0.1 }}
+    >
       <div className='max-w-7xl mx-auto px-4'>
         {/* Header */}
         <motion.div
@@ -161,29 +162,29 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}>
+          transition={{ duration: 0.8 }}
+        >
           <h2 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight'>
             Get In Touch
           </h2>
           <p className='text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto'>
-            Have a project in mind or just want to say hi? I'd love to hear from
-            you.
+            Have a project in mind or just want to say hi? I'd love to hear from you.
           </p>
           <div className='w-24 h-1 bg-emerald-500/50 dark:bg-emerald-400/50 mx-auto mt-6 rounded-full'></div>
         </motion.div>
 
-        <motion.div
+        <motion.div 
           className='grid grid-cols-1 lg:grid-cols-3 gap-8'
-          variants={containerVariants}>
+          variants={containerVariants}
+        >
           {/* Left Column */}
           <motion.div
             className='lg:col-span-1 flex flex-col gap-8'
-            variants={itemVariants}>
+            variants={itemVariants}
+          >
             {/* Contact Info Card */}
             <div className='bg-white/50 dark:bg-slate-800/60 backdrop-blur-lg rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/50 h-full'>
-              <h3 className='font-bold text-xl text-gray-800 dark:text-white mb-5'>
-                Contact Details
-              </h3>
+              <h3 className='font-bold text-xl text-gray-800 dark:text-white mb-5'>Contact Details</h3>
               <ul className='space-y-4'>
                 {contactItems.map((item, index) => (
                   <li key={index}>
@@ -191,7 +192,8 @@ const Contact = () => {
                       href={item.href}
                       target={item.target || '_self'}
                       rel='noopener noreferrer'
-                      className='flex items-center gap-4 group transition-colors'>
+                      className='flex items-center gap-4 group transition-colors'
+                    >
                       <div className='flex-shrink-0 w-12 h-12 bg-emerald-100/60 dark:bg-slate-700/80 rounded-lg flex items-center justify-center group-hover:bg-emerald-200/80 dark:group-hover:bg-slate-700 transition-colors'>
                         <item.icon className='w-6 h-6 text-emerald-600 dark:text-emerald-400' />
                       </div>
@@ -205,10 +207,8 @@ const Contact = () => {
             </div>
             {/* Socials Card */}
             <div className='bg-white/50 dark:bg-slate-800/60 backdrop-blur-lg rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/50'>
-              <h3 className='font-bold text-xl text-gray-800 dark:text-white mb-5'>
-                Follow Me
-              </h3>
-              <div className='flex items-center gap-4'>
+              <h3 className='font-bold text-xl text-gray-800 dark:text-white mb-5'>Follow Me</h3>
+              <div className='flex items-center flex-wrap gap-4'>
                 {socialIcons.map((social) => (
                   <motion.a
                     key={social.label}
@@ -219,7 +219,8 @@ const Contact = () => {
                     className='w-12 h-12 flex items-center justify-center bg-emerald-100/60 dark:bg-slate-700/80 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-emerald-200/80 dark:hover:bg-slate-700 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300'
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
-                    transition={{ type: 'spring', stiffness: 300 }}>
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
                     <social.icon className='h-6 w-6' />
                   </motion.a>
                 ))}
@@ -230,10 +231,9 @@ const Contact = () => {
           {/* Right Column: Form */}
           <motion.div
             className='lg:col-span-2 bg-white/50 dark:bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/50'
-            variants={itemVariants}>
-            <h3 className='font-bold text-2xl text-gray-800 dark:text-white mb-6'>
-              Send a Message
-            </h3>
+            variants={itemVariants}
+          >
+            <h3 className='font-bold text-2xl text-gray-800 dark:text-white mb-6'>Send a Message</h3>
             <form onSubmit={handleSubmit} className='space-y-6'>
               <FormField
                 id='name'
@@ -267,7 +267,8 @@ const Contact = () => {
                   disabled={status === 'submitting'}
                   className='w-full inline-flex items-center justify-center px-6 py-3.5 text-base font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
                   whileHover={{ y: -2, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}>
+                  whileTap={{ scale: 0.98 }}
+                >
                   {status === 'submitting' ? (
                     <>
                       <Loader2 className='mr-2 h-5 w-5 animate-spin' />
@@ -282,25 +283,25 @@ const Contact = () => {
                 </motion.button>
               </div>
             </form>
-            <AnimatePresence>
+             <AnimatePresence>
               {status === 'success' && (
-                <motion.p
+                <motion.p 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className='mt-4 flex items-center justify-center gap-2 text-green-600 dark:text-green-400'>
-                  <CheckCircle className='h-5 w-5' /> Message sent successfully!
-                  Thank you.
+                  className='mt-4 flex items-center justify-center gap-2 text-green-600 dark:text-green-400'
+                >
+                  <CheckCircle className="h-5 w-5" /> Message sent successfully! Thank you.
                 </motion.p>
               )}
               {status === 'error' && (
-                <motion.p
+                <motion.p 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className='mt-4 flex items-center justify-center gap-2 text-red-600 dark:text-red-400'>
-                  <XCircle className='h-5 w-5' /> Something went wrong. Please
-                  try again later.
+                  className='mt-4 flex items-center justify-center gap-2 text-red-600 dark:text-red-400'
+                >
+                  <XCircle className="h-5 w-5" /> Something went wrong. Please try again later.
                 </motion.p>
               )}
             </AnimatePresence>

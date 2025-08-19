@@ -1,9 +1,9 @@
-
+export type SkillCategory = 'Languages & Frameworks' | 'Styling & Design' | 'Tools & Platforms' | 'Backend' | 'Mobile';
 
 export interface Skill {
   name: string;
-  icon: React.ReactNode;
-  category: 'Languages & Frameworks' | 'Styling & Design' | 'Tools & Platforms';
+  icon: React.ElementType;
+  category: SkillCategory;
 }
 
 export interface Project {

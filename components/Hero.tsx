@@ -101,7 +101,7 @@ const Hero = () => {
 
         {/* Right Column: Profile Picture */}
         <motion.div
-          className='relative mx-auto w-80 h-80 lg:w-96 lg:h-96 order-1 md:order-2'
+          className='relative mx-auto w-52 h-52 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 order-1 md:order-2 mt-16 md:mt-0'
           variants={imageContainerVariants}
           initial='hidden'
           animate='visible'>
@@ -117,8 +117,6 @@ const Hero = () => {
             }}>
             {/* Background shapes */}
             <div className='absolute -top-4 -right-4 w-full h-full rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 transform rotate-6 z-0'></div>
-            <div className='absolute -bottom-4 -left-4 w-full h-full rounded-2xl bg-gradient-to-tl from-cyan-500/10 to-transparent transform -rotate-6 z-0'></div>
-
             {/* Image */}
             <div className='relative h-full w-full rounded-2xl border-4 border-slate-200/50 p-1.5 shadow-xl dark:border-slate-800/50 bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm'>
               <div className='h-full w-full overflow-hidden rounded-lg'>

@@ -6,9 +6,7 @@ interface FormFieldProps {
   name: string;
   placeholder: string;
   value: string;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   IconComponent: React.ComponentType<LucideProps>;
   as?: 'input' | 'textarea';
   type?: string;
