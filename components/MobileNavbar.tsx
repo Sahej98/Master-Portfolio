@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Menu, X, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { Menu, X, FileText } from 'lucide-react';
 import { NAVIGATION_LINKS, PERSONAL_INFO } from '../constants';
 import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
@@ -10,33 +10,43 @@ interface MobileNavbarProps {
   hasScrolled: boolean;
 }
 
-const mobileMenuVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.2, ease: 'easeOut' } 
+const panelVariants: Variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'tween', duration: 0.3, ease: 'easeOut' },
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95,
-    transition: { duration: 0.15, ease: 'easeIn' }
+  closed: {
+    opacity: 0,
+    y: '-100%',
+    transition: { type: 'tween', duration: 0.3, ease: 'easeIn' },
   },
 };
 
-const mobileLinkContainerVariants: Variants = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.1,
-        }
-    }
+const listVariants: Variants = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
 };
 
-const mobileLinkVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { ease: 'easeOut'} },
+const itemVariants: Variants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 },
+    },
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 },
+    },
+  },
 };
 
 const MobileNavbar = ({ hasScrolled, activeSection }: MobileNavbarProps) => {
@@ -44,11 +54,22 @@ const MobileNavbar = ({ hasScrolled, activeSection }: MobileNavbarProps) => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <nav
       className={`md:hidden fixed w-full z-30 top-0 start-0 transition-all duration-300 ${
         hasScrolled || isOpen
-          ? 'bg-white/70 shadow-md dark:bg-slate-900/70 backdrop-blur-lg border-b border-gray-200/50 dark:border-slate-800/50'
+          ? 'bg-white/70 shadow-md dark:bg-slate-900/70 backdrop-blur-lg'
           : 'bg-transparent'
       }`}
     >
@@ -58,58 +79,58 @@ const MobileNavbar = ({ hasScrolled, activeSection }: MobileNavbarProps) => {
           <ThemeToggle />
           <motion.button
             onClick={toggleMenu}
+            whileTap={{ scale: 0.9 }}
             type='button'
-            className='relative z-50 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-slate-400 dark:hover:bg-slate-700 dark:focus:ring-slate-600'
+            className='relative z-50 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none dark:text-slate-400 dark:hover:bg-slate-700'
             aria-controls='navbar-mobile-menu'
             aria-expanded={isOpen}
-            whileTap={{ scale: 0.9 }}
           >
             <span className='sr-only'>Open main menu</span>
-            <AnimatePresence mode="wait" initial={false}>
-                {isOpen ? (
-                     <motion.div key="x" initial={{rotate: -90, opacity: 0}} animate={{rotate: 0, opacity: 1}} exit={{rotate: 90, opacity: 0}} transition={{duration: 0.2}}>
-                        <X className='w-6 h-6' />
-                    </motion.div>
-                ) : (
-                    <motion.div key="menu" initial={{rotate: 90, opacity: 0}} animate={{rotate: 0, opacity: 1}} exit={{rotate: -90, opacity: 0}} transition={{duration: 0.2}}>
-                        <Menu className='w-6 h-6' />
-                    </motion.div>
-                )}
+             <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={isOpen ? 'x' : 'menu'}
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </motion.div>
             </AnimatePresence>
           </motion.button>
         </div>
       </div>
-
+      
       <AnimatePresence>
         {isOpen && (
           <motion.div
             id='navbar-mobile-menu'
-            className='fixed inset-0 z-40 pt-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl'
-            variants={mobileMenuVariants}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
+            variants={panelVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className='absolute top-0 left-0 w-full h-[100dvh] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl pt-20'
           >
-            <motion.ul 
-                className='flex flex-col items-center justify-center h-full gap-4 p-4'
-                variants={mobileLinkContainerVariants}
+            <motion.ul
+              variants={listVariants}
+              className='flex flex-col items-center gap-4 p-4 py-8'
             >
               {NAVIGATION_LINKS.map((link) => (
-                <motion.li key={link.name} variants={mobileLinkVariants}>
+                <motion.li key={link.name} variants={itemVariants} className="w-full max-w-xs">
                   <a
                     href={link.href}
                     onClick={toggleMenu}
-                    className={`block py-3 px-6 rounded-lg transition-colors text-lg w-full text-center ${
+                    className={`block py-3 px-6 rounded-lg transition-colors text-lg w-full text-center font-medium ${
                       activeSection === link.href.substring(1)
                         ? 'text-emerald-600 bg-emerald-500/10 dark:text-emerald-400 dark:bg-emerald-400/10'
-                        : 'text-gray-800 dark:text-slate-300'
+                        : 'text-gray-800 dark:text-slate-300 hover:bg-gray-200/50 dark:hover:bg-slate-800/50'
                     }`}
                   >
                     {link.name}
                   </a>
                 </motion.li>
               ))}
-              <motion.li variants={mobileLinkVariants} className="mt-8 w-full max-w-xs">
+              <motion.li variants={itemVariants} className="mt-6 w-full max-w-xs">
                 <a
                   href={PERSONAL_INFO.resumeUrl}
                   target='_blank'

@@ -191,8 +191,8 @@ const CloudySkyBackground = React.memo(() => {
     };
 
     const init = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      width = canvas.width = canvas.clientWidth;
+      height = canvas.height = canvas.clientHeight;
       clouds.current = [];
       CLOUD_LAYERS.forEach((layer) => {
         const responsiveCount = Math.max(
@@ -262,7 +262,7 @@ const CloudySkyBackground = React.memo(() => {
   return (
     <canvas
       ref={canvasRef}
-      className='fixed inset-0 -z-10 h-full w-full'></canvas>
+      className='fixed inset-0 -z-10 h-[100dvh] w-full'></canvas>
   );
 });
 

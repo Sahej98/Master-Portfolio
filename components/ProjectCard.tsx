@@ -1,22 +1,14 @@
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 import { Project } from '../types';
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 50, damping: 20 },
-  },
-};
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <motion.div
-      variants={cardVariants}
-      className='bg-white/40 dark:bg-slate-800/60 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl flex flex-col h-full border border-slate-200/80 dark:border-slate-700/50 transition-all duration-300 hover:-translate-y-2'>
+      whileHover={{ y: -8 }}
+      transition={{ type: 'spring', stiffness: 300 }}
+      className='bg-white/40 dark:bg-slate-800/60 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl flex flex-col h-full border border-slate-200/80 dark:border-slate-700/50 transition-shadow duration-300'>
       <a
         href={project.liveUrl}
         target='_blank'

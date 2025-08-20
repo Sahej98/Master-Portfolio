@@ -200,8 +200,8 @@ const CosmosBackground = React.memo(() => {
     });
 
     const init = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      width = canvas.width = canvas.clientWidth;
+      height = canvas.height = canvas.clientHeight;
       stars = [];
       nebulas = [];
       planets = [];
@@ -351,7 +351,7 @@ const CosmosBackground = React.memo(() => {
   return (
     <canvas
       ref={canvasRef}
-      className='fixed inset-0 -z-10 h-full w-full bg-black'></canvas>
+      className='fixed inset-0 -z-10 h-[100dvh] w-full bg-black'></canvas>
   );
 });
 

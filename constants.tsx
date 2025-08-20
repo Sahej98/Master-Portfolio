@@ -62,7 +62,8 @@ export const CORE_PHILOSOPHY = [
 // IMPORTANT: To enable the contact form, you must deploy a Google Apps Script
 // and paste the Web App URL here.
 // For a tutorial, search for "Google Sheets contact form".
-export const GOOGLE_SHEET_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+export const GOOGLE_SHEET_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbxWNGATC0wrk1NZ7-xDenHnyqFUzOMlMjmOBFlIFv69q6LXXvUK3FaqIWUhHBMn_ShvPA/exec';
 
 export const SOCIAL_LINKS = {
   github: 'https://github.com',
@@ -185,7 +186,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'A MERN stack project management app to track, organize, and update projects with a clean, intuitive interface. Features task management, progress tracking, and team collaboration.',
     image:
-      'https://images.unsplash.com/photo-1555529771-835f59fc5efe?q=80&w=800&auto=format&fit=crop',
+      '/project-tracker.png',
     tags: ['MongoDB', 'Express', 'React', 'Node.js', 'JavaScript'],
     liveUrl: '#',
     repoUrl: '#',
@@ -195,7 +196,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'A real-time chat application built with Next.js and Firebase. Supports channels, direct messaging, and user authentication for seamless communication experiences.',
     image:
-      'https://images.unsplash.com/photo-1581093588401-60c0d0c1b49f?q=80&w=800&auto=format&fit=crop',
+      '/ecosphere.png',
     tags: ['Next.js', 'Firebase', 'React', 'Tailwind CSS', 'JavaScript'],
     liveUrl: '#',
     repoUrl: '#',
@@ -205,7 +206,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'An upgraded MERN stack messaging app with real-time chat, media sharing, and improved UI/UX, enhancing the standard WhatsApp clone experience.',
     image:
-      'https://images.unsplash.com/photo-1601933474776-1a41dc6c9620?q=80&w=800&auto=format&fit=crop',
+      '/emogram.png',
     tags: ['MongoDB', 'Express', 'React', 'Node.js', 'JavaScript'],
     liveUrl: '#',
     repoUrl: '#',
@@ -215,7 +216,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'A dynamic tourism platform built with MERN, showcasing destinations, travel guides, and booking options. Designed to enhance the user journey with interactive features.',
     image:
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop',
+      '/tourispot.png',
     tags: ['MongoDB', 'Express', 'React', 'Node.js', 'JavaScript'],
     liveUrl: '#',
     repoUrl: '#',
@@ -225,7 +226,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'A study visa consultancy site built with FlexiFunnels, guiding users through visa application processes with professional layouts and conversion-focused design.',
     image:
-      'https://images.unsplash.com/photo-1591696205602-6a55a18dca5f?q=80&w=800&auto=format&fit=crop',
+      '/admit-letter.png',
     tags: ['FlexiFunnels', 'Web Design', 'UI/UX'],
     liveUrl: '#',
     repoUrl: '#',
@@ -235,7 +236,7 @@ export const PROJECTS_LIST: Project[] = [
     description:
       'A Shopify-powered e-commerce site for selling wallpapers, featuring product catalogs, seamless shopping cart, and secure checkout for an optimal user experience.',
     image:
-      'https://images.unsplash.com/photo-1581276879432-15a4a7d62c08?q=80&w=800&auto=format&fit=crop',
+      '/stenna.png',
     tags: ['Shopify', 'E-commerce', 'Web Design'],
     liveUrl: '#',
     repoUrl: '#',

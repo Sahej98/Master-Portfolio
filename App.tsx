@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import Hero from './components/Hero';
@@ -75,10 +75,7 @@ const App = () => {
       <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence>
 
       {!isLoading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}>
+        <div>
           {theme === 'light' ? <CloudySkyBackground /> : <CosmosBackground />}
           <Navbar hasScrolled={hasScrolled} activeSection={activeSection} />
           <MobileNavbar
@@ -95,7 +92,7 @@ const App = () => {
             </main>
             <Footer />
           </div>
-        </motion.div>
+        </div>
       )}
     </>
   );
